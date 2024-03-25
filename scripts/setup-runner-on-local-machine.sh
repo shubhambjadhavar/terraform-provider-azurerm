@@ -3,3 +3,4 @@ curl -o actions-runner-osx-x64-2.314.1.tar.gz -L https://github.com/actions/runn
 echo "3faff4667d6d12c41da962580168415d628e3ffba9924b9ac995752087efc921  actions-runner-osx-x64-2.314.1.tar.gz" | shasum -a 256 -c
 tar xzf ./actions-runner-osx-x64-2.314.1.tar.gz
 ./config.sh --url https://github.com/shubhambjadhavar/terraform-provider-azurerm --token
+./run.sh
