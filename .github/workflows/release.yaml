@@ -22,6 +22,19 @@ jobs:
         name: Checkout
         uses: actions/checkout@v2
       -
+        name: Set up Go Path
+        run: |
+          mkdir -p /home/ubuntu/go
+          mkdir -p /home/ubuntu/.cache
+          mkdir -p /home/ubuntu/.cache/go-build
+          mkdir -p /home/ubuntu/.cache/go-mod
+          GOPATH="/home/ubuntu/go"
+          GOCACHE="/home/ubuntu/.cache/go-build"
+          GOMODCACHE="/home/ubuntu/.cache/go-mod"
+          echo GOPATH=$GOPATH >> $GITHUB_ENV
+          echo GOCACHE=$GOCACHE >> $GITHUB_ENV
+          echo GOMODCACHE=$GOMODCACHE >> $GITHUB_ENV
+      -
         name: Set up Go
         uses: actions/setup-go@v5
         with:
@@ -33,12 +46,6 @@ jobs:
         with:
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
-
-      - name: Set up Go Path
-        run: |
-          mkdir -p /home/ubuntu/actions-runner/go-path
-          GOPATH="/home/ubuntu/actions-runner/go-path"
-          echo GOPATH=$GOPATH >> $GITHUB_ENV
       -
         name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v5
