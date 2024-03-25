@@ -30,6 +30,8 @@ website/node_modules
 
 website/vendor
 
+scripts/actions-runner
+
 .vscode/
 
 # mkdocs output
