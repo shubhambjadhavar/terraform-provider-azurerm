@@ -33,6 +33,12 @@ jobs:
         with:
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
+
+      - name: Set up Go Path
+        run: |
+          mkdir -p /home/ubuntu/actions-runner/go-path
+          GOPATH="/home/ubuntu/actions-runner/go-path"
+          echo GOPATH=$GOPATH >> $GITHUB_ENV
       -
         name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v5
